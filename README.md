@@ -24,7 +24,7 @@ Output per cohort: one `<subject>_cc.json` per case and a combined
 ## Layout
 
 ```
-PEDs-LGG/
+PEDs-HGG/
 ├── README.md
 ├── requirements.txt
 ├── scan_gli_et.py              # filter GLI to GBM-like cases (ET > 100)
@@ -51,7 +51,7 @@ Python 3.11 is recommended (best antspyx wheel coverage; 3.9 often forces a slow
 source build).
 
 ```bash
-cd PEDs-LGG
+cd PEDs-HGG
 python3.11 -m venv venv_ants
 source venv_ants/bin/activate
 pip install --upgrade pip
@@ -155,6 +155,27 @@ analysis. WT = whole tumor, TC = tumor core, ET = enhancing tumor.
 Counts are cases with any overlap in that region. ET metrics reflect that a large
 share of pHGG is non-enhancing (et_vol = 0), unlike the enhancement-filtered GBM
 cohort. Significance testing is done in the separate analysis stage.
+
+## Registration to MNI152 Space
+
+Sample cases warped to the MNI152 template. Red = warped tumor (whole tumor) in
+MNI space; cyan = corpus callosum contour. Each panel shows sagittal, coronal,
+and axial views at the midline. These span CC-involved and non-involved cases so
+the computed overlap flags can be checked against anatomy.
+
+| Case | CC whole (WT) | CC genu (TC) | Butterfly (WT) |
+|------|---------------|--------------|----------------|
+| BraTS-PED-00033-000 | yes | yes | yes |
+| BraTS-PED-00001-000 | yes | yes | yes |
+| BraTS-PED-00043-000 | yes | no  | yes |
+| BraTS-PED-00128-000 | no  | no  | no |
+| BraTS-PED-00151-000 | no  | no  | no |
+
+![QC BraTS-PED-00033-000](qc/QC_BraTS-PED-00033-000.png)
+![QC BraTS-PED-00001-000](qc/QC_BraTS-PED-00001-000.png)
+![QC BraTS-PED-00043-000](qc/QC_BraTS-PED-00043-000.png)
+![QC BraTS-PED-00128-000](qc/QC_BraTS-PED-00128-000.png)
+![QC BraTS-PED-00151-000](qc/QC_BraTS-PED-00151-000.png)
 
 ## Notes
 
